@@ -58,9 +58,7 @@ class CharacterDetailViewControllerTests: XCTestCase {
         viewController.character = character
         viewController.setupAditionalConfiguration()
 
-        // Add assertions to check if the character information is properly set in the detail view
-        // Example: XCTAssertEqual(viewController.detailView.titleLabel.text, "John Doe")
-        // Example: XCTAssertEqual(viewController.detailView.statusLabel.text, "Alive")
+         XCTAssertEqual(viewController.detailView.nameLabel.text, "John Doe")
     }
 
 }

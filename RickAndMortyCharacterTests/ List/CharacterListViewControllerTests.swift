@@ -56,7 +56,6 @@ class CharacterListViewControllerTests: XCTestCase {
     
     func testReloadTableView() {
         viewController.reloadTableView()
-        // Assert the expected behavior after reloading the table view
     }
 
 }
