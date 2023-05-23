@@ -15,7 +15,7 @@ class CharacterTableViewCell: UITableViewCell {
     lazy var view: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(red: 0.18, green: 0.18, blue: 0.18, alpha: 1.00)
+        view.backgroundColor = UIColor(red: 0.89, green: 0.86, blue: 0.81, alpha: 1.00)
         view.clipsToBounds = true
         view.layer.cornerRadius = 25
         return view
@@ -37,7 +37,11 @@ class CharacterTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 25)
-        label.textColor = .white
+        label.textColor = .darkGray
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.textAlignment = .center
+            
             
         return label
         
@@ -46,7 +50,7 @@ class CharacterTableViewCell: UITableViewCell {
     lazy var statusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
+        label.textColor = .darkGray
         return label
         
     }()
@@ -54,7 +58,7 @@ class CharacterTableViewCell: UITableViewCell {
     lazy var speciesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
+        label.textColor = .darkGray
         return label
         
     }()
@@ -71,7 +75,7 @@ class CharacterTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
         
-    public func setUpInfo(character: CharacterModel) {
+    public func setUpInfo(character: Character) {
         self.viewModel = CharacterCellViewModel(character: character)
         self.imagemView.image = viewModel?.getImage
         self.nameLabel.text = viewModel?.getName
@@ -101,13 +105,14 @@ extension CharacterTableViewCell: ViewCode {
             self.imagemView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
             self.imagemView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             self.imagemView.heightAnchor.constraint(equalToConstant: 200),
-            self.imagemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            self.imagemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            //self.imagemView.widthAnchor.constraint(equalToConstant: 300),
+            self.imagemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            self.imagemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             
             
             self.nameLabel.topAnchor.constraint(equalTo: imagemView.bottomAnchor, constant: 20),
             self.nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            self.nameLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: -22),
+            self.nameLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 22),
             
             
             self.statusLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
@@ -121,7 +126,7 @@ extension CharacterTableViewCell: ViewCode {
     }
     
     func setupAditionalConfiguration() {
-        self.contentView.backgroundColor = UIColor(red: 0.14, green: 0.14, blue: 0.14, alpha: 1.00)
+        self.contentView.backgroundColor = UIColor(red: 0.95, green: 0.94, blue: 0.91, alpha: 1.00) 
         
     }
     

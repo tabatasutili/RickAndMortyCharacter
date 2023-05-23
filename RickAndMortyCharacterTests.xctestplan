@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "698C7CA3-8A96-439A-B31B-1471FD60E223",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "threadSanitizerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:RickAndMortyCharacter.xcodeproj",
+        "identifier" : "04D206D62A16E9E20063B0D8",
+        "name" : "RickAndMortyCharacterTests"
+      }
+    }
+  ],
+  "version" : 1
+}

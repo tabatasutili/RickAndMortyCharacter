@@ -14,7 +14,8 @@ class CharacterListViewController: UIViewController {
     lazy var tableView:UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .darkGray
+        tableView.backgroundColor = UIColor(red: 0.95, green: 0.94, blue: 0.91, alpha: 1.00)
+
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
@@ -25,9 +26,8 @@ class CharacterListViewController: UIViewController {
 
     override func viewDidLoad() {
         setupView()
-        self.viewModel.fetchCharacters()
-        self.viewModel.delegate(delegate: self)
-        
+        self.viewModel.fetchCharacters(pagination: false)
+        self.viewModel.delegate(delegate: self)        
     }
 }
 
@@ -48,7 +48,7 @@ extension CharacterListViewController: ViewCode {
     }
     
     func setupAditionalConfiguration() {
-        
+        self.view.backgroundColor = UIColor(red: 0.95, green: 0.94, blue: 0.91, alpha: 1.00)
         
     }
     
@@ -73,9 +73,10 @@ extension CharacterListViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let character = self.viewModel.currentCharacter(indexPath: indexPath)
         print("Clicouuuuuu")
+        //CharacterDetailViewModel(character: character)
         let detailViewController = CharacterDetailViewController()
-        self.navigationController?.present(detailViewController, animated: true)
-        //self.navigationController?.pushViewController(detailViewController, animated: false)
+        detailViewController.character = character
+        self.present(detailViewController, animated: true, completion: nil)
         
     }
 
@@ -86,6 +87,20 @@ extension CharacterListViewController: UITableViewDelegate, UITableViewDataSourc
 extension CharacterListViewController: viewModelDelegate {
     func reloadTableView() {
         self.tableView.reloadData()
+    }
+    
+    
+}
+
+extension CharacterListViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        if position > tableView.contentSize.height-800 {
+            print("mais dataaaaa")
+            self.viewModel.fetchCharacters(pagination: true)
+        }
+        
     }
     
     
